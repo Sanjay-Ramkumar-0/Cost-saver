@@ -13,8 +13,8 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #0a0a0a; /* Deep black base, Fincher-inspired shadows */
-            color: #e0e0e0; /* High-contrast off-white text for readability */
+            background-color: #0a0a0a; /* Deep black base, Fincher-inspired */
+            color: #e0e0e0; /* Off-white text for readability */
             display: flex;
             flex-direction: column;
             min-height: 100vh;
@@ -31,13 +31,13 @@
         .header h1 {
             font-size: 2.5em;
             font-weight: 800;
-            color: #b5c99a; /* Muted green-yellow tint, evoking Fincher's desaturated palettes (e.g., Se7en/Fight Club vibes) */
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8); /* Dramatic shadow for mood */
+            color: #b5c99a; /* Muted green-yellow, Fincher palette */
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8); /* Dramatic shadow */
         }
 
         .header .subtitle {
             font-size: 1.1em;
-            color: #8a8a8a; /* Desaturated gray for subtle intrigue */
+            color: #8a8a8a; /* Desaturated gray */
             margin-top: 12px;
             opacity: 0.9;
         }
@@ -51,10 +51,10 @@
         }
 
         .card {
-            background-color: #1f1f1f; /* Dark gray card base, high contrast against black */
+            background-color: #1f1f1f; /* Dark gray card base */
             border-radius: 12px;
             padding: 24px;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7), inset 0 1px 2px rgba(255, 255, 255, 0.05); /* Fincher depth: outer shadow + subtle inner glow */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7), inset 0 1px 2px rgba(255, 255, 255, 0.05);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -64,6 +64,12 @@
             color: inherit;
             position: relative;
             overflow: hidden;
+            -webkit-tap-highlight-color: transparent; /* Remove blue highlight on mobile tap */
+            outline: none; /* Prevent outline on focus */
+        }
+
+        .card:active, .card:focus {
+            outline: none; /* Ensure no outline on touch/click */
         }
 
         .card::before {
@@ -73,41 +79,32 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(59, 82, 63, 0.15), rgba(0, 0, 0, 0)); /* Subtle green overlay for Fincher's moody tint */
+            background: linear-gradient(135deg, rgba(59, 82, 63, 0.15), rgba(0, 0, 0, 0));
             opacity: 0.6;
             transition: opacity 0.4s ease;
         }
 
-        .card:hover::before {
+        .card:hover::before, .card:active::before {
             opacity: 1;
         }
 
-        .card:hover {
-            transform: translateY(-6px) scale(1.02); /* Slight lift and zoom for interactivity, like a film frame shift */
+        .card:hover, .card:active {
+            transform: translateY(-6px) scale(1.02); /* Smooth lift effect */
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.9), inset 0 1px 2px rgba(255, 255, 255, 0.1);
         }
 
         .card-title {
             font-size: 1.6em;
             font-weight: 700;
-            color: #d4d4d4; /* Near-white for punchy titles */
+            color: #d4d4d4;
             z-index: 1;
         }
 
         .card-subtitle {
             font-size: 0.95em;
-            color: #a0a0a0; /* Muted for secondary text */
+            color: #a0a0a0;
             margin-top: 10px;
             z-index: 1;
-        }
-
-        .footer {
-            font-size: 0.85em;
-            color: #6a6a6a;
-            text-align: center;
-            padding: 20px;
-            background: #0a0a0a;
-            border-top: 1px solid #2a2a2a; /* Subtle divider */
         }
 
         /* Mobile-first responsive design */
@@ -129,7 +126,7 @@
             }
         }
 
-        /* Creative animation: Fade-in on load, Fincher slow reveal */
+        /* Fade-in animation */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -163,6 +160,5 @@
             <div class="card-subtitle">Amazon, Flipkart, Direct sellers – hunt the lowest price in the dark</div>
         </a>
     </div>
-    <div class="footer">Inspired by David Fincher's Palette • CostSaver 2025 • Shadows Hide the Best Deals</div>
 </body>
 </html>
