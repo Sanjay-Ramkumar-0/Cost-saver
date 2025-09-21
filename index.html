@@ -13,31 +13,66 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #0a0a0a; /* Deep black base, Fincher-inspired */
-            color: #e0e0e0; /* Off-white text for readability */
+            background-color: #0a0a0a;
+            color: #e0e0e0;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
             overflow-x: hidden;
         }
 
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+            background-color: #1a1a1a;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .nav-logo {
+            font-size: 1.5em;
+            font-weight: 800;
+            color: #b5c99a;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 16px;
+        }
+
+        .nav-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-size: 1em;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #b5c99a;
+        }
+
         .header {
             padding: 40px 20px 20px;
             text-align: center;
-            background: linear-gradient(to bottom, #1a1a1a, #0a0a0a); /* Subtle gradient for depth */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6); /* Fincher-esque shadowy edges */
+            background: linear-gradient(to bottom, #1a1a1a, #0a0a0a);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
         }
 
         .header h1 {
             font-size: 2.5em;
             font-weight: 800;
-            color: #b5c99a; /* Muted green-yellow, Fincher palette */
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8); /* Dramatic shadow */
+            color: #b5c99a;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
         }
 
         .header .subtitle {
             font-size: 1.1em;
-            color: #8a8a8a; /* Desaturated gray */
+            color: #8a8a8a;
             margin-top: 12px;
             opacity: 0.9;
         }
@@ -51,7 +86,7 @@
         }
 
         .card {
-            background-color: #1f1f1f; /* Dark gray card base */
+            background-color: #1f1f1f;
             border-radius: 12px;
             padding: 24px;
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7), inset 0 1px 2px rgba(255, 255, 255, 0.05);
@@ -64,12 +99,12 @@
             color: inherit;
             position: relative;
             overflow: hidden;
-            -webkit-tap-highlight-color: transparent; /* Remove blue highlight on mobile tap */
-            outline: none; /* Prevent outline on focus */
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
         }
 
         .card:active, .card:focus {
-            outline: none; /* Ensure no outline on touch/click */
+            outline: none;
         }
 
         .card::before {
@@ -89,7 +124,7 @@
         }
 
         .card:hover, .card:active {
-            transform: translateY(-6px) scale(1.02); /* Smooth lift effect */
+            transform: translateY(-6px) scale(1.02);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.9), inset 0 1px 2px rgba(255, 255, 255, 0.1);
         }
 
@@ -107,10 +142,40 @@
             z-index: 1;
         }
 
+        .ripple {
+            position: absolute;
+            background: rgba(181, 201, 154, 0.3);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            pointer-events: none;
+        }
+
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
         /* Mobile-first responsive design */
         @media (max-width: 600px) {
+            .navbar {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
             .header h1 {
                 font-size: 2em;
+            }
+
+            .header .subtitle {
+                font-size: 1em;
             }
 
             .card {
@@ -126,7 +191,19 @@
             }
         }
 
-        /* Fade-in animation */
+        /* Enhance touch feedback for mobile */
+        @media (hover: none) {
+            .card:hover {
+                transform: none;
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7), inset 0 1px 2px rgba(255, 255, 255, 0.05);
+            }
+
+            .card:active {
+                transform: translateY(-6px) scale(1.02);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.9), inset 0 1px 2px rgba(255, 255, 255, 0.1);
+            }
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -142,6 +219,14 @@
     </style>
 </head>
 <body>
+    <nav class="navbar">
+        <a href="index.html" class="nav-logo">CostSaver</a>
+        <div class="nav-links">
+            <a href="transport.html">Transport</a>
+            <a href="food.html">Food</a>
+            <a href="shopping.html">Shopping</a>
+        </div>
+    </nav>
     <div class="header">
         <h1>CostSaver</h1>
         <div class="subtitle">Uncover hidden deals in the shadows – Transport, Food, Shopping compared for the ultimate edge</div>
@@ -153,12 +238,29 @@
         </a>
         <a href="food.html" class="card">
             <div class="card-title">Food</div>
-            <div class="card-subtitle">Swiggy vs Zomato vs Direct – devour savings, not your wallet</div>
+            <div class="card-subtitle">Swiggy vs Zomato – devour savings, not your wallet</div>
         </a>
         <a href="shopping.html" class="card">
             <div class="card-title">Shopping</div>
-            <div class="card-subtitle">Amazon, Flipkart, Direct sellers – hunt the lowest price in the dark</div>
+            <div class="card-subtitle">Amazon vs Flipkart vs Meesho vs Myntra – hunt the lowest price</div>
         </a>
     </div>
+    <script>
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                ripple.classList.add('ripple');
+                this.appendChild(ripple);
+
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                ripple.style.width = ripple.style.height = `${size}px`;
+                ripple.style.left = `${e.clientX - rect.left - size / 2}px`;
+                ripple.style.top = `${e.clientY - rect.top - size / 2}px`;
+
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+    </script>
 </body>
 </html>
